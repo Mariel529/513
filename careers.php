@@ -253,7 +253,7 @@ function sanitize_filename($filename) {
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="order_history.php">Order History</a></li>
                 <li><a href="careers.php">Apply for Job</a></li>
-                <li><a href="http://47.99.104.82/forum/">Forum</a></li>
+                <li><a href="forum.php">Forum</a></li>
                 <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -326,4 +326,5 @@ function sanitize_filename($filename) {
 </footer>
 <?php include 'theme_toggle.php'; ?>
 </body>
+
 </html>
