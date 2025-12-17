@@ -573,14 +573,14 @@ if ($pdo) {
                 <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.php">Home</a></li>
+               <li><a href="index.php">Home</a></li>
                 <li><a href="products.php">Products</a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="order_history.php">Order History</a></li>
                 <li><a href="careers.php">Apply for Job</a></li>
-                <li><a href="http://47.99.104.82/forum/">Forum</a></li>
+                <li><a href="forum.php">Forum</a></li>
                 <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
