@@ -78,12 +78,12 @@ $admin_username = $_SESSION['admin_username'] ?? '';
             text-decoration: none;
             letter-spacing: 1px;
         }
-
-
+        
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .nav-menu a {
@@ -91,11 +91,19 @@ $admin_username = $_SESSION['admin_username'] ?? '';
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
         }
         
         .nav-menu a:hover {
             color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
         }
         
         /* Welcome Banner Styles */
