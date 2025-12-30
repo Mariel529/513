@@ -6,6 +6,15 @@
 
 // Start output buffering to prevent headers already sent error
 ob_start();
+// Debugging feature: Implement "flash messages" — display success/error only once,
+// then immediately clear them from session to prevent re-display on page refresh.
+$success = $_SESSION['success'] ?? null;
+$errors = $_SESSION['form_errors'] ?? [];
+$oldInput = $_SESSION['old_input'] ?? [];
+
+// Security & UX best practice: Unset flash data immediately after reading
+// to ensure it appears exactly once (prevents duplicate submissions or stale messages).
+unset($_SESSION['success'], $_SESSION['form_errors'], $_SESSION['old_input']);
 
 // Include theme initialization at the VERY TOP
 require_once 'init_theme.php';
@@ -101,7 +110,7 @@ if ($pdo) {
         }
         
         /* Header Styles */
-        .header {
+                .header {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             color: var(--white);
             padding: 1rem 0;
@@ -125,15 +134,13 @@ if ($pdo) {
             color: var(--primary-gold);
             text-decoration: none;
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .nav-menu a {
@@ -141,11 +148,19 @@ if ($pdo) {
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
         }
         
         .nav-menu a:hover {
             color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
         }
         
         /* Hero Section */
@@ -573,14 +588,14 @@ if ($pdo) {
                 <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
             </a>
             <ul class="nav-menu">
-               <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="products.php">Products</a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="order_history.php">Order History</a></li>
                 <li><a href="careers.php">Apply for Job</a></li>
-                <li><a href="forum.php">Forum</a></li>
+                <li><a href="http://47.99.104.82/forum/">Forum</a></li>
                 <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
