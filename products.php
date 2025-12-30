@@ -393,48 +393,18 @@ foreach ($products as $product) {
             margin-top: 4rem;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h3 {
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
+        /* Footer */
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 2rem;
+            background-color: #1a1a1a;
+            color: var(--white);
+            margin-top: 4rem;
         }
         
-        .admin-link {
-            display: inline-block;
-            background-color: var(--primary-gold);
-            color: var(--dark-text);
-            padding: 0.7rem 1.5rem;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 2rem;
-            font-weight: bold;
-            transition: background-color 0.3s;
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
         }
-        
-        .admin-link:hover {
-            background-color: var(--secondary-gold);
-        }
-        
         /* Currency Styling */
         .currency {
             color: var(--primary-gold);
