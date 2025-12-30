@@ -3,7 +3,6 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once 'init_theme.php';
 $host = 'localhost';
 $db   = '47_99_104_82'; 
 $user = '47_99_104_82';
@@ -45,7 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_application'])
         if (!file_exists($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
-
+      // Validate phone number only if provided
+       if (!empty($phone)) {
+    // Keep digits only (remove all non-numeric characters)
+        $cleanPhone = preg_replace('/\D/', '', $phone);
+    
+    // Australian mobile or landline regex (supports +61 or 0 prefix)
+       if (!preg_match('/^(?:\+?61|0)[2-478]\d{8}$/', $cleanPhone)) {
+        $errors[] = "Please enter a valid Australian phone number (e.g., 0412345678 or +61298765432).";
+        }
+    // Use the cleaned numeric version for storage (optional)
+       $phone = $cleanPhone;
+        }
         if (!empty($_FILES['resume']['name'][0])) {
             $count = count($_FILES['resume']['name']);
             for ($i = 0; $i < $count; $i++) {
@@ -104,6 +114,7 @@ function sanitize_filename($filename) {
             --dark-text: #2c2c2c;
             --light-bg: #f9f9f9;
             --border: #e0e0e0;
+            --white: #ffffff;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -112,11 +123,16 @@ function sanitize_filename($filename) {
             color: var(--dark-text);
             background-color: #fff;
         }
-        .header {
+        
+       .header {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-            color: white;
+            color: var(--white);
             padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+        
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -125,16 +141,41 @@ function sanitize_filename($filename) {
             justify-content: space-between;
             align-items: center;
         }
+        
         .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
             color: var(--primary-gold);
             text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
+            letter-spacing: 1px;
         }
-        .nav-menu { list-style: none; display: flex; gap: 1.5rem; }
-        .nav-menu a { color: white; text-decoration: none; }
-        .nav-menu a:hover { color: var(--primary-gold); }
-
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
+        }
         .container {
             max-width: 1000px;
             margin: 2rem auto;
@@ -227,16 +268,20 @@ function sanitize_filename($filename) {
         .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 
+        /* Footer */
         .footer-bottom {
             text-align: center;
             padding: 2rem;
-            color: #666;
-            border-top: 1px solid #eee;
-            margin-top: 3rem;
+            background-color: #1a1a1a;
+            color: var(--white);
+            margin-top: 4rem;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
         }
     </style>
-<?php require_once 'theme_config.php'; ?>
-<?php include 'theme_styles.php'; ?>
+
 </head>
 <body>
 
@@ -245,6 +290,7 @@ function sanitize_filename($filename) {
             <a href="index.php" class="logo">
                 <img src="photo/2.jpg" alt="Timeless Tokens" style="height: 40px; vertical-align: middle;">
                 <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
+                </a>
         <ul class="nav-menu">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="products.php">Products</a></li>
@@ -292,10 +338,10 @@ function sanitize_filename($filename) {
                 <label for="email">Email Address *</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone">
-            </div>
+           <div class="form-group">
+               <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+           </div>
             <div class="form-group">
                 <label for="position">Position Applying For *</label>
                 <select id="position" name="position" required>
@@ -324,7 +370,6 @@ function sanitize_filename($filename) {
 <footer class="footer-bottom">
     <p>&copy;  ©2025 Timeless Tokens Jewelry|Created by Mariel</p>
 </footer>
-<?php include 'theme_toggle.php'; ?>
-</body>
 
+</body>
 </html>
