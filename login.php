@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         /* Header Styles */
-        .header {
+               .header {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             color: var(--white);
             padding: 1rem 0;
@@ -178,20 +178,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: var(--primary-gold);
             text-decoration: none;
             letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo img {
-            height: 40px;
-            width: auto;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .nav-menu a {
@@ -199,18 +192,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 1rem;
-            padding: 10px 0;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
         }
         
         .nav-menu a:hover {
             color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.1);
         }
         
-        /* Current page highlight */
         .nav-menu a.active {
             color: var(--primary-gold);
-            border-bottom: 2px solid var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
         }
         
         /* Hero Section */
@@ -589,7 +583,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
             </a>
             <ul class="nav-menu">
-               <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="products.php">Products</a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
@@ -597,8 +591,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <li><a href="order_history.php">Order History</a></li>
                 <li><a href="careers.php">Apply for Job</a></li>
                 <li><a href="forum.php">Forum</a></li>
-                <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
-                <li><a href="login.php">Login</a></li>
+                <li><a href="http://47.99.104.82/feedback/">Feedback</a></li>
+                <li><a href="login.php" class="active">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
