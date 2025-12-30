@@ -50,7 +50,7 @@ $admin_username = $_SESSION['admin_username'] ?? '';
         }
         
         /* Header Styles */
-        .header {
+       .header {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
             color: var(--white);
             padding: 1rem 0;
@@ -79,7 +79,8 @@ $admin_username = $_SESSION['admin_username'] ?? '';
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         
         .nav-menu a {
@@ -87,11 +88,19 @@ $admin_username = $_SESSION['admin_username'] ?? '';
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
         }
         
         .nav-menu a:hover {
             color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-menu a.active {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.2);
         }
         
         /* Hero Section */
@@ -535,29 +544,28 @@ $admin_username = $_SESSION['admin_username'] ?? '';
     </style>
 </head>
 <body class="<?php echo $current_theme === 'dark' ? 'dark-mode' : ''; ?>">
-    <!-- Header Navigation -->
-    <header class="header">
-        <nav class="nav-container">
-            <a href="index.php" class="logo">
-                <img src="photo/2.jpg" alt="Timeless Tokens" style="height: 40px; vertical-align: middle;">
-                <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="products.php">Products</a></li>
-                <li><a href="about.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="order_history.php">Order History</a></li>
-                <li><a href="careers.php">Apply for Job</a></li>
-                <li><a href="forum.php">Forum</a></li>
-                <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="logout.php">Logout</a></li>
-                
-            </ul>
-        </nav>
-    </header>
+   <!-- Header Navigation -->
+<header class="header">
+    <nav class="nav-container">
+        <a href="index.php" class="logo">
+            <img src="photo/2.jpg" alt="Timeless Tokens" style="height: 40px; vertical-align: middle;">
+            <span style="vertical-align: middle;">Timeless Tokens Jewelry</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="products.php">Products</a></li>
+            <li><a href="about.php">About Us</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="cart.php">Cart</a></li>
+            <li><a href="order_history.php">Order History</a></li>
+            <li><a href="careers.php">Apply for Job</a></li>
+            <li><a href="http://47.99.104.82/forum/">Forum</a></li>
+            <li><a href="http://47.99.104.82/feedback/">feedback</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+    </nav>
+</header>
 
     <!-- Hero Section -->
     <section class="about-hero">
@@ -759,19 +767,7 @@ $admin_username = $_SESSION['admin_username'] ?? '';
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-bottom">
-        <div>
-            <p>&copy;  © 2025 Timeless Tokens Jewelry|Created by Mariel</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #aaa;">
-                <a href="https://map.baidu.com/poi/Fossil/@16832442.68933116,-3987633.0,19z?uid=071009f3b4bec5aea3a93430&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&en_uid=071009f3b4bec5aea3a93430&pcevaname=pc4.1&querytype=detailConInfo&da_src=shareurl" 
-                   target="_blank" 
-                   style="color: #aaa; text-decoration: none;">
-                   Find us at Fossil Store, Queen Victoria Building on Baidu Map
-                </a>
-            </p>
-        </div>
-    </footer>
+<?php include 'footer.php'; ?>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
